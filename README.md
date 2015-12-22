@@ -6,6 +6,6 @@ Sub tasks
 * 4 images can be resized and displayed on the screen simultaneously. - DONE
 * Each image would take 1/4th (25%) of the screen area.- DONE 
 * In total all 4 images must fill the screen. -DONE
-* Also I need the program to prompt for the location of the images using a file chooser. (it cannot stay hard-coded as it is * now in the examples). -DONE 
+* Also I need the program to prompt for the location of the images using a file chooser. (it cannot stay hard-coded as it is now in the examples). -DONE 
 * The screen dimensions must be automatically detected and the program window maximized to full screen. - DONE 
 * The image parameters must be detected from the JPEG. - DONE
