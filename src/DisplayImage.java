@@ -26,10 +26,11 @@ public class DisplayImage extends JPanel {
 
 	public static void main(String avg[]) throws IOException {
 
-		DisplayImage abc = new DisplayImage();
+		//DisplayImage abc = new DisplayImage();
+		DisplayImage abc = new DisplayImage(IMAGE);
 	}
 
-	public DisplayImage() throws IOException {
+	public DisplayImage(String image) throws IOException {
 		GridLayout gridLayout = new GridLayout(2, 2);
 		BufferedImage img = ImageIO.read(new File(IMAGE));
 		
