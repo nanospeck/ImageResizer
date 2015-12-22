@@ -1,9 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,11 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+/*
+ * @author akhilkarun
+ *
+ */
+
 public class FileChooser extends JFrame {
-	private JTextField filename = new JTextField(), dir = new JTextField();
 	private JTextField filepath1 = new JTextField();
 	private JTextField filepath2 = new JTextField();
 	private JTextField filepath3 = new JTextField();
@@ -35,8 +39,12 @@ public class FileChooser extends JFrame {
 	public FileChooser() {
 		JPanel panel = new JPanel();
 		choose1.addActionListener(new Choose1());
-		panel.add(choose1);
-		process.addActionListener(new SaveL());
+		choose2.addActionListener(new Choose2());
+		choose3.addActionListener(new Choose3());
+		choose4.addActionListener(new Choose4());
+		
+		//panel.add(choose1);
+		process.addActionListener(new ProcessImage());
 		panel.add(process);
 		Container container = getContentPane();
 		container.add(panel, BorderLayout.SOUTH);
@@ -166,25 +174,51 @@ public class FileChooser extends JFrame {
 		}
 	}
 
-	class SaveL implements ActionListener {
+	class ProcessImage implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
+
 			try {
-				DisplayImage abc = new DisplayImage(filepath1.getText());
+				boolean filenamesvalid = isJPEG(filepath1.getText(),
+						filepath2.getText(), filepath3.getText(),
+						filepath4.getText());
+				if (filenamesvalid) {
+					DisplayImage abc = new DisplayImage(filepath1.getText(),filepath2.getText(),filepath3.getText(),filepath4.getText());
+				} else {
+					msgbox("Please choose all file with extention 'jpg' or 'jpeg' .");
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 	}
-
-	public static void main(String[] args) {
-		run(new FileChooser(), 400, 300);
+	
+	public boolean isJPEG(String s1, String s2, String s3, String s4) {
+		if (s1 != null && s2 != null && s3 != null && s4 != null) {
+			if ((s1.toLowerCase().endsWith("jpeg") || s1.toLowerCase()
+					.endsWith("jpg"))
+					&& (s2.toLowerCase().endsWith("jpeg") || s2.toLowerCase()
+							.endsWith("jpg"))
+					&& (s3.toLowerCase().endsWith("jpeg") || s3.toLowerCase()
+							.endsWith("jpg"))
+					&& (s4.toLowerCase().endsWith("jpeg") || s4.toLowerCase()
+							.endsWith("jpg")))
+				return true;
+		}
+		return false;
 	}
-
-	public static void run(JFrame frame, int width, int height) {
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(width, height);
-		frame.setVisible(true);
-	}
+	
+	private void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
+	// uncomment for testing this class
+//	public static void main(String[] args) {
+//		run(new FileChooser(), 400, 300);
+//	}
+//
+//	public static void run(JFrame frame, int width, int height) {
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(width, height);
+//		frame.setVisible(true);
+//	}
 }

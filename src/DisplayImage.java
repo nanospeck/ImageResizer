@@ -14,36 +14,39 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * @author akhilkarun
+ *
  */
 
 public class DisplayImage extends JPanel {
-
-	private static final String IMAGE = "/Users/akhilkarun/Desktop/download.jpeg";
+	// uncomment this sample value only for testing
+	//private static final String IMAGE = "/Users/akhilkarun/Desktop/download.jpeg";
+	
 	static GraphicsDevice gd = GraphicsEnvironment
 			.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-	public static void main(String avg[]) throws IOException {
-
-		//DisplayImage abc = new DisplayImage();
-		DisplayImage abc = new DisplayImage(IMAGE);
-	}
-
-	public DisplayImage(String image) throws IOException {
-		GridLayout gridLayout = new GridLayout(2, 2);
-		BufferedImage img = ImageIO.read(new File(IMAGE));
+	public DisplayImage(String image1, String image2, String image3, String image4) throws IOException {
 		
-		ImageIcon icon = new ImageIcon(ImageResize.resizeImageWithHint(img,
+		GridLayout gridLayout = new GridLayout(2, 2);
+		BufferedImage img1 = ImageIO.read(new File(image1));
+		BufferedImage img2 = ImageIO.read(new File(image2));
+		BufferedImage img3 = ImageIO.read(new File(image3));
+		BufferedImage img4 = ImageIO.read(new File(image4));
+		
+		ImageIcon icon1 = new ImageIcon(ImageResize.resizeImageWithHint(img1,
 				getImageHeight(), getImageWidth()));
-		ImageIcon icon1 = new ImageIcon(ImageResize.resizeImage(img,
+		ImageIcon icon2 = new ImageIcon(ImageResize.resizeImageWithHint(img2,
 				getImageHeight(), getImageWidth()));
-		ImageIcon icon2 = new ImageIcon(ImageResize.resizeImage(img,
+		ImageIcon icon3 = new ImageIcon(ImageResize.resizeImageWithHint(img3,
 				getImageHeight(), getImageWidth()));
+		ImageIcon icon4 = new ImageIcon(ImageResize.resizeImageWithHint(img4,
+				getImageHeight(), getImageWidth()));
+		
+		
 		JLabel label1 = new JLabel(icon1);
-		JLabel label2 = new JLabel(icon);
-		JLabel label3 = new JLabel(icon);
-		JLabel label4 = new JLabel(icon2);
+		JLabel label2 = new JLabel(icon2);
+		JLabel label3 = new JLabel(icon3);
+		JLabel label4 = new JLabel(icon4);
 
 		add(label1);
 		add(label2);
@@ -76,17 +79,9 @@ public class DisplayImage extends JPanel {
 	private static int getScreenHeight() {
 		return gd.getDisplayMode().getHeight();
 	}
-
-	// public DisplayImage1() throws IOException {
-	// BufferedImage img = ImageIO.read(new File(IMAGE));
-	// ImageIcon icon = new ImageIcon(img);
-	// JFrame frame = new JFrame();
-	// frame.setLayout(new FlowLayout());
-	// frame.setState(Frame.NORMAL);
-	// JLabel lbl = new JLabel();
-	// lbl.setIcon(icon);
-	// frame.add(lbl);
-	// frame.setVisible(true);
-	// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	// }
+//uncomment this class for testing 
+//	public static void main(String avg[]) throws IOException {
+//
+//		//DisplayImage abc = new DisplayImage(IMAGE,IMAGE,IMAGE,IMAGE);
+//	}
 }
