@@ -10,10 +10,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /*
- * @author mkyong
+ * @author akhilkarun
  *
  */
-public class ImageTest {
+public class ImageResize {
 
 	private static final int IMG_WIDTH = 100;
 	private static final int IMG_HEIGHT = 100;
@@ -25,7 +25,7 @@ public class ImageTest {
 			BufferedImage originalImage = ImageIO
 					.read(new File("/Users/akhilkarun/Desktop/download.jpeg"));
 			int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-
+			System.out.println(type);
 			BufferedImage resizeImageJpg = resizeImage(originalImage, type);
 			ImageIO.write(resizeImageJpg, "jpg",
 					new File("/Users/akhilkarun/Desktop/download1.jpeg"));
@@ -48,6 +48,13 @@ public class ImageTest {
 
 	}
 
+	public static BufferedImage resizeImage(BufferedImage originalImage, int height,int width){
+		BufferedImage resizedImage = new BufferedImage(width, height, 5);
+		Graphics2D g = resizedImage.createGraphics();
+		g.drawImage(originalImage, 0, 0, width, height, null);
+		g.dispose();
+		return resizedImage;
+	}
 	private static BufferedImage resizeImage(BufferedImage originalImage, int type) {
 		BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
 		Graphics2D g = resizedImage.createGraphics();
